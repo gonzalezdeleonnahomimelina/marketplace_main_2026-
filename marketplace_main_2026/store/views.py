@@ -12,7 +12,7 @@ from .models import Product
 # ==========================================
 def home(request):
     products = Product.objects.select_related('owner').prefetch_related('categories').all()
-    return render(request, 'marketplace/home.html', {'products': products})
+    return render(request, 'store/home.html', {'products': products})  # <-- Cambiado a store/
 
 
 # ==========================================
@@ -27,7 +27,7 @@ def register(request):
             return redirect('home')
     else:
         form = RegisterForm()
-    return render(request, 'marketplace/register.html', {'form': form})
+    return render(request, 'store/register.html', {'form': form})  # <-- Cambiado a store/
 
 
 def login_view(request):
@@ -42,7 +42,7 @@ def login_view(request):
         else:
             messages.error(request, "Usuario o contraseña incorrectos")
             
-    return render(request, 'marketplace/login.html')
+    return render(request, 'store/login.html')  # <-- Cambiado a store/
 
 
 def logout_view(request):
